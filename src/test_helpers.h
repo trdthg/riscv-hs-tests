@@ -7,6 +7,7 @@
 #define _TEST_HELPERS_H
 
 #include "printf.h"
+#include "htif.h"
 
 /**
  * Log a message, including the current function name. Message with a newline.
@@ -21,12 +22,14 @@
  * @param check Condition for assertion, pass if true
  * @param msg Format string for variable args
  */
-#define ASSERT(check, msg, ...)                                      \
-	do {                                                         \
-		if (check)                                           \
+#define ASSERT(check, msg, ...)                          \
+	do {                                                 \
+		if (check)                                       \
 			printf("[  OK  ] " msg "\n", ##__VA_ARGS__); \
-		else                                                 \
+		else  {                                          \
 			printf("[ FAIL ] " msg "\n", ##__VA_ARGS__); \
+			htif_exit(1);                                \
+		}                                                \
 	} while (0)
 
 #endif

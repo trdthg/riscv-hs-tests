@@ -9,12 +9,12 @@
 #include "test_helpers.h"
 #include "utils.h"
 
-static void payload_ebreak(unsigned long arg0)
+__attribute__ ((__noinline__)) static void payload_ebreak(unsigned long /*arg0*/)
 {
 	asm volatile("ebreak");
 }
 
-static void payload_load(unsigned long arg0)
+__attribute__ ((__noinline__)) static void payload_load(unsigned long arg0)
 {
 	register unsigned long res asm("a0") = *((unsigned long *)arg0);
 	asm volatile("ebreak" ::"r"(res) :);
