@@ -1,5 +1,19 @@
 # `riscv-hs-tests`
 
+Whats different from origin repo:
+
+- Replace putchar and exit impletation from sbi to htif to fit sail-model
+- Update entry.S to init pmp, medeleg and trap_handler
+- Fix some test cases
+
+Some notes:
+
+- `init_\[s/vs/s\]pt` will map virtual address to the same physical address directly and set the `\[s/vs/hg\]atp` register \(sv39 only\).
+- `map_\[s/vs/g\]pt` will map a to b.
+- start from `0x80200000` which is written in _riscv-hs-tests.lds_.
+
+---
+
 *WIP*
 
 `riscv-hs-tests` is a HS-mode test suite.
